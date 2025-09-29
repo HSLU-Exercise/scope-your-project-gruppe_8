@@ -1,0 +1,38 @@
+Regulatory Compliance Checkliste:
+1. Datenschutzrichtlinie (Privacy Policy) vorhanden
+2. Impressum/Kontaktinformationen vorhanden
+3. Einwilligung zur Datenverarbeitung eingeholt
+4. Dokumentation der Datenflüsse vorhanden
+5. Zugriffskontrollen und Rollen dokumentiert
+6. Aufbewahrungsfristen für Daten definiert
+7. Mechanismen zur Datenlöschung implementiert
+8. Sicherheitsvorfälle werden dokumentiert und gemeldet
+9. Regelmäßige Compliance-Schulungen durchgeführt
+
+Prüfe auf wichtige Compliance-Dokumente...
+Fehlt: privacy_policy.txt nicht gefunden.
+Fehlt: impressum.txt nicht gefunden.
+Fehlt: data_flow_diagram.png nicht gefunden.
+
+Prüfe auf dokumentierte Einwilligungen...
+Warnung: Keine dokumentierte Einwilligung gefunden!
+
+Suche nach DSGVO-relevanten Begriffen im Projekt...
+Begriff 'DSGVO' gefunden in ./regulatorycompliance.py
+Begriff 'GDPR' gefunden in ./regulatorycompliance.py
+Begriff 'Datenschutz' gefunden in ./regulatorycompliance.py
+Begriff 'privacy' gefunden in ./regulatorycompliance.py
+Begriff 'data protection' gefunden in ./regulatorycompliance.py
+
+Interaktive Compliance-Checkliste: Bitte beantworten Sie mit 'j' (ja) oder 'n' (nein)
+
+Ergebnisse der Checkliste:
+✔ Datenschutzrichtlinie (Privacy Policy) vorhanden
+✔ Impressum/Kontaktinformationen vorhanden
+✔ Einwilligung zur Datenverarbeitung eingeholt
+✔ Dokumentation der Datenflüsse vorhanden
+✔ Zugriffskontrollen und Rollen dokumentiert
+✔ Aufbewahrungsfristen für Daten definiert
+✔ Mechanismen zur Datenlöschung implementiert
+✔ Sicherheitsvorfälle werden dokumentiert und gemeldet
+✔ Regelmäßige Compliance-Schulungen durchgeführt
