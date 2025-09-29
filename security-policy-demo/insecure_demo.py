@@ -1,3 +1,3 @@
-password = "123456"  # verboten
+password = "12345"  # verboten
 eval("print('Hi')")  # verboten
 print("DEBUG: das ist debug")  # verboten
