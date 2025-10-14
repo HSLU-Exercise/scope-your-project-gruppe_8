@@ -1,6 +1,7 @@
 name: Security Policy Enforcement
 
 on:
+# pull rquest 
   pull_request:
     types: [opened, synchronize, reopened]
 
