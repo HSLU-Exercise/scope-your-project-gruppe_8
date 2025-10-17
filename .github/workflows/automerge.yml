@@ -7,21 +7,14 @@ permissions:
 jobs:
   automerge:
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'  # Nur für Dependabot
+    if: github.actor == 'dependabot[bot]'
     steps:
-      - uses: actions/checkout@v4
-      - name: Fetch metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Approve PR
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Enable Auto-Merge
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch'  # Nur Patches
         run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
