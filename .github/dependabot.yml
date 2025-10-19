@@ -1,7 +1,7 @@
 version: 2
 updates:
-  - package-ecosystem: "pip"  # Für Python
-    directory: "/Dependabot"
+  - package-ecosystem: "pip"
+    directory: "/Dependabot"  # Anpassen, wenn requirements.txt woanders liegt
     schedule:
       interval: "daily"
    
