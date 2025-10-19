@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: "pip"  # Für Python
-    directory: "/"
+    directory: "/Dependabot"
     schedule:
       interval: "daily"
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 10
