@@ -1,0 +1,23 @@
+name: Policy Enforcement
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  enforce-policies:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check if PR targets main
+        run: |
+          echo "Prüfe Ziel-Branch..."
+          if [ "${{ github.event.pull_request.base.ref }}" == "main" ]; then
+            echo "❌ Merge in main ist nicht erlaubt!"
+            exit 1
+          else
+            echo "✅ Merge-Ziel ist erlaubt."
+          fi
