@@ -15,6 +15,11 @@ jobs:
     # Laufzeitumgebung – GitHub stellt eine Ubuntu-VM bereit
     runs-on: ubuntu-latest
 
+    # Notwendig, damit der Workflow Statuschecks an den PR melden darf
+    permissions:
+      contents: read
+      pull-requests: write
+
     # Liste der einzelnen Schritte, die in diesem Job ausgeführt werden
     steps:
       # Schritt 1: Repository-Code in die VM laden
@@ -23,7 +28,7 @@ jobs:
 
       # Schritt 2: Policy-Prüfung
       - name: Check if PR targets main
-        run: |  # Mehrzeiliges Shell-Skript
+        run: |
           echo "🔍 Prüfe Ziel-Branch..."
 
           # Zugriff auf PR-Daten über GitHub-Kontext:
