@@ -22,14 +22,10 @@ jobs:
 
     # Liste der einzelnen Schritte, die in diesem Job ausgeführt werden
     steps:
-      # Schritt 1: Repository-Code laden
-      - name: Checkout repository
-
       # Schritt 2: Policy-Prüfung – blockiert PRs, die in main mergen wollen
       - name: Check if PR targets main
         run: |
           echo "🔍 Prüfe Ziel-Branch..."
-
           # GitHub-Kontext liefert den Ziel-Branch des Pull Requests
           if [ "${{ github.event.pull_request.base.ref }}" == "main" ]; then
             echo "❌ Merge in main ist nicht erlaubt!"
