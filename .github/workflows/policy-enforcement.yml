@@ -24,7 +24,6 @@ jobs:
     steps:
       # Schritt 1: Repository-Code laden
       - name: Checkout repository
-        uses: actions/checkout@v4  # Offizielle GitHub-Action, lädt das Repo
 
       # Schritt 2: Policy-Prüfung – blockiert PRs, die in main mergen wollen
       - name: Check if PR targets main
