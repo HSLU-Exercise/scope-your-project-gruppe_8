@@ -1,0 +1,38 @@
+name: Generate SBOM
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Installiere Dependencies:
+      # - Wenn ein package-lock.json existiert -> npm ci (schnell & reproduzierbar)
+      # - Sonst -> npm install (legt ein Lockfile an)
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Generate CycloneDX SBOM (JSON)
+        run: npx @cyclonedx/cyclonedx-npm --output-file sbom.json --output-format json
+
+      - name: Upload SBOM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-cyclonedx
+          path: sbom.json
