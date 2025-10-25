@@ -12,6 +12,8 @@ on:
 jobs:
   # Job-ID: frei wählbarer Name (hier "enforce-policies")
   enforce-policies:
+    # Name des Jobs: frei wählbar
+    name: Policy Enforcement
     # Laufzeitumgebung – GitHub stellt eine Ubuntu-VM bereit
     runs-on: ubuntu-latest
 
@@ -22,7 +24,7 @@ jobs:
 
     # Liste der einzelnen Schritte, die in diesem Job ausgeführt werden
     steps:
-      # Schritt 2: Policy-Prüfung – blockiert PRs, die in main mergen wollen
+      # Schritt 1: Policy-Prüfung – blockiert PRs, die in main mergen wollen
       - name: Check if PR targets main
         run: |
           echo "🔍 Prüfe Ziel-Branch..."
