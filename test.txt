@@ -1,2 +1,1 @@
-print("Test")
 aws_key = "AKIAIOSFODNN7EXAMPLE"
