@@ -12,30 +12,26 @@ on:
 jobs:
   # Job-ID: frei wählbarer Name (hier "enforce-policies")
   enforce-policies:
+    # Name des Jobs: frei wählbar
+    name: Policy Enforcement
     # Laufzeitumgebung – GitHub stellt eine Ubuntu-VM bereit
     runs-on: ubuntu-latest
 
-    # Notwendig, damit der Workflow Statuschecks an den PR melden darf
+    # Berechtigungen – erlaubt dem Workflow, PRs zu lesen und Status zu setzen
     permissions:
       contents: read
       pull-requests: write
 
     # Liste der einzelnen Schritte, die in diesem Job ausgeführt werden
     steps:
-      # Schritt 1: Repository-Code in die VM laden
-      - name: Checkout repository
-        uses: actions/checkout@v4  # Offizielle GitHub-Action, lädt dein Repo
-
-      # Schritt 2: Policy-Prüfung
+      # Schritt 1: Policy-Prüfung – blockiert PRs, die in main mergen wollen
       - name: Check if PR targets main
         run: |
           echo "🔍 Prüfe Ziel-Branch..."
-
-          # Zugriff auf PR-Daten über GitHub-Kontext:
-          # github.event.pull_request.base.ref = Ziel-Branch des PR
+          # GitHub-Kontext liefert den Ziel-Branch des Pull Requests
           if [ "${{ github.event.pull_request.base.ref }}" == "main" ]; then
             echo "❌ Merge in main ist nicht erlaubt!"
-            exit 1  # Beende den Job mit Fehler → GitHub zeigt roten Status → Merge blockiert
+            exit 1  # Workflow schlägt fehl → roter Status → Merge blockiert
           else
             echo "✅ Merge-Ziel ist erlaubt."
           fi

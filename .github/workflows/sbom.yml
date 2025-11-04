@@ -1,38 +1,28 @@
 name: Generate SBOM
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
-  sbom:
+  generate-sbom:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+      - name: Install Syft
+        uses: anchore/sbom-action/download-syft@v0.17.0
 
-      # Installiere Dependencies:
-      # - Wenn ein package-lock.json existiert -> npm ci (schnell & reproduzierbar)
-      # - Sonst -> npm install (legt ein Lockfile an)
-      - name: Install dependencies
+      - name: Generate SBOM (CycloneDX JSON)
         run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
+          echo "🔍 Generiere SBOM..."
+          syft dir:. -o cyclonedx-json > sbom.json
+          echo "✅ SBOM erstellt: sbom.json"
 
-      - name: Generate CycloneDX SBOM (JSON)
-        run: npx @cyclonedx/cyclonedx-npm --output-file sbom.json --output-format json
-
-      - name: Upload SBOM artifact
+      - name: Upload SBOM as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: sbom-cyclonedx
+          name: sbom-${{ github.event.pull_request.head.ref }}
           path: sbom.json
