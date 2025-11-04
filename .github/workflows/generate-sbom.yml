@@ -3,7 +3,7 @@ name: Generate SBOM
 on:
   push:
     branches: [ main ]
-  workflow_dispatch: {}
+  workflow_dispatch: {}   # erlaubt manuelles Starten über "Run workflow"
 
 jobs:
   sbom:
@@ -20,8 +20,8 @@ jobs:
       - name: Install CycloneDX
         run: pip install --upgrade pip cyclonedx-bom
 
-      # Optional: Dependencies installieren (falls Module importiert werden müssen)
-      - name: Install project dependencies (optional)
+      # optional: falls requirements.txt existiert
+      - name: Install dependencies (optional)
         if: hashFiles('requirements.txt') != ''
         run: pip install -r requirements.txt
 
