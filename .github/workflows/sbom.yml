@@ -1,33 +1,33 @@
-name: Generate SBOM
+name: Generate SBOM                     # Name des Workflows (wird in GitHub Actions angezeigt)
 
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+on:                                     # Wann der Workflow ausgeführt werden soll
+  pull_request:                         # Wird bei Pull Requests gestartet
+    types: [opened, synchronize, reopened]  # Auslöser: neuer PR, Update eines PRs oder Wiederöffnung
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+jobs:                                   # Hier beginnt die Definition des Jobs
+  build:                                # Job-Name (beliebig, z. B. "build" oder "generate")
+    runs-on: ubuntu-latest              # Der Job läuft auf einem Ubuntu Runner (Linux-Server in GitHub)
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    steps:                              # Die einzelnen Schritte im Job
+      - name: Checkout code             # 1️⃣ Lädt den Code aus dem Repository in den Runner
+        uses: actions/checkout@v4       #     Nutzt die Standard-GitHub-Action zum Auschecken des Codes
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Python             # 2️⃣ Installiert Python, damit Syft ausgeführt werden kann
+        uses: actions/setup-python@v5   #     Offizielle Action zum Einrichten von Python
         with:
-          python-version: '3.10'
+          python-version: '3.10'        #     Version von Python, die verwendet wird (hier 3.10)
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Install dependencies      # 3️⃣ Installiert die Abhängigkeiten aus requirements.txt
+        run: pip install -r requirements.txt  #     Führt pip install aus (optional, kann weggelassen werden, wenn leer)
 
-      - name: Install Syft
-        uses: anchore/sbom-action/download-syft@v0.17.0
+      - name: Install Syft              # 4️⃣ Lädt das Tool Syft herunter
+        uses: anchore/sbom-action/download-syft@v0.17.0  #     Anchore stellt das Syft-Tool bereit (Version 0.17.0)
 
-      - name: Generate SBOM
-        run: syft dir:. -o cyclonedx-json > sbom.json
+      - name: Generate SBOM             # 5️⃣ Erzeugt die Software Bill of Materials
+        run: syft dir:. -o cyclonedx-json > sbom.json    #     Scannt den Projektordner und erstellt die Datei sbom.json
 
-      - name: Upload SBOM
-        uses: actions/upload-artifact@v4
+      - name: Upload SBOM               # 6️⃣ Lädt die erzeugte SBOM-Datei als Artefakt hoch
+        uses: actions/upload-artifact@v4  #     Offizielle GitHub-Action zum Hochladen von Dateien
         with:
-          name: sbom
-          path: sbom.json
+          name: sbom                    #     Der Name des Artefakts (so wird es in GitHub angezeigt)
+          path: sbom.json               #     Pfad zur hochzuladenden Datei
