@@ -11,7 +11,7 @@ print(f"Willkommen bei {shop_name}!")
 print(f"Du hast das {produkt} für {preis} {waehrung} ausgewählt.")
 
 # Key direkt im Code – NICHT SICHER!
-key = "sk_live_51J1qG72eZvKYlo2C9jZ1qG72eZvKYlo2C9jZ1qG72eZvKYlo2C9jZ1qG72eZvKYlo2C9jZ1qG7"
+key = "sk_test_FAKE-DO-NOT-USE-1234567890abcdef12345678"
 
 print(f"Key geladen: {key[:10]}... (ganzer Key sichtbar!)")
 print("Zahlung wird verarbeitet... ✅")
