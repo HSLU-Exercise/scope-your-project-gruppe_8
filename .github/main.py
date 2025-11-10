@@ -1,11 +1,9 @@
-# SBOM Demo Version 3
-import requests
-import pandas as pd
-import numpy as np
+# SBOM Demo – einfacher Beispielcode
+# Dieses Skript dient nur zur Demonstration des automatischen SBOM-Workflows.
 
 def main():
-    r = requests.get("https://api.github.com")
-    print("GitHub API status:", r.status_code)
+    message = "Hello from SBOM Demo!"
+    print(message)
 
 if __name__ == "__main__":
     main()
