@@ -1,0 +1,27 @@
+# bad_demo.py
+# Ein kleiner Online-Shop (nur Demo!) — schlechtes Beispiel: Keys hart im Code
+
+shop_name = "Paul's Super Shop"
+produkt = "Premium T-Shirt"
+preis = 19.99
+waehrung = "EUR"
+
+print(f"Willkommen bei {shop_name}!")
+print(f"Du hast das {produkt} für {preis} {waehrung} ausgewählt.")
+
+# ABSICHTLICH: Harte Kodierung mehrerer FAKE-Keys (nur für Demo)
+stripe = "DEMO_STRIPE_2025_XYZ_FAKE_0001"
+aws_key = "DEMO_AWS_KEY_FAKE_2025_ABCDEFG"
+github_token = "DEMO_GITHUB_TOKEN_FAKE_0987654321"
+azure_secret = "DEMO_AZURE_SECRET_FAKE_2025_QWERTY"
+firebase = "DEMO_FIREBASE_KEY_FAKE_ABC123DEF456"
+db_password = "DEMO_DB_PASSWORD_FAKE_P@ssw0rd_DEMO"
+api_key = "DEMO_APIKEY_2025_FAKE-KEY-01"
+private_fake = "DEMO_PRIVATEKEY_FAKE_BEGIN_ABCDEF12345_END"
+
+print("Gefundene Demo-Keys (unsafe):")
+print(f" stripe: {stripe[:20]}...")
+print(f" aws_key: {aws_key[:20]}...")
+print(f" github_token: {github_token[:20]}...")
+print("Zahlung wird verarbeitet... ✅")
+print("Vielen Dank für deinen Einkauf! 🎉")
