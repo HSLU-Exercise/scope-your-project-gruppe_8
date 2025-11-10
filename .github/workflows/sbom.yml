@@ -1,32 +1,33 @@
-name: Generate SBOM                     # Name des Workflows in GitHub Actions
+name: Generate SBOM                     # Name des Workflows
 
-on:                                     # Auslöser des Workflows
-  pull_request:                         # läuft für Pull Requests
-    types: [opened, synchronize, reopened]  # bei PR-Erstellung, weiteren Commits und Wiederöffnen
+on:                                     # Auslöser
+  pull_request:                         # Bei Pull Requests
+    types: [opened, synchronize, reopened]
 
-jobs:                                   # Definition der Jobs
-  build:                                # Job-Name
-    runs-on: ubuntu-latest              # Runner-Umgebung (Ubuntu)
+jobs:
+  build:
+    runs-on: ubuntu-latest              # Runner-Umgebung
 
-    steps:                              # Auszuführende Schritte
-      - name: Checkout code             # Repository auf den Runner ziehen
+    steps:
+      - name: Checkout code             # Repository in den Runner holen
         uses: actions/checkout@v4
 
-      - name: Set up Python             # Python-Toolchain bereitstellen
+      - name: Set up Python             # Python installieren
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'        # Python-Version für das Projekt
+          python-version: '3.10'
 
       - name: Install dependencies      # Projektabhängigkeiten installieren
-        run: pip install -r requirements.txt  # liest requirements.txt (z.B. requests/pandas/numpy)
+        run: pip install -r requirements.txt
 
-      - name: Generate SBOM             # SBOM mit Syft erzeugen
+      - name: Install Syft              # SBOM-Tool (Syft) herunterladen
         uses: anchore/sbom-action/download-syft@v0.17.0
-        with:
-          format: cyclonedx-json        # Ausgabeformat: CycloneDX JSON (Datei: sbom.json)
 
-      - name: Upload SBOM               # SBOM als Artefakt anhängen
+      - name: Generate SBOM             # SBOM erzeugen
+        run: syft dir:. -o cyclonedx-json > sbom.json   # SBOM-Datei erstellen
+
+      - name: Upload SBOM               # SBOM hochladen
         uses: actions/upload-artifact@v4
         with:
-          name: sbom                    # Artefaktname in der Actions-Ansicht
-          path: sbom.json               # Pfad zur erzeugten SBOM-Datei
+          name: sbom                    # Artefaktname
+          path: sbom.json               # Pfad zur Datei
