@@ -1,0 +1,5 @@
+# shop_falsch.py – FALSCH: Stripe Key hart im Code!
+stripe_key = "sk_live_51J1qG72eZvKYlo2C9jZ1qG72eZvKYlo2C9jZ1qG72eZvKYlo2C9jZ1qG72eZvKYlo2C9jZ1qG7"
+
+print("Zahlung mit Stripe...")
+print(f"Key: {stripe_key[:10]}... (sichtbar für alle!)")
