@@ -1,4 +1,5 @@
-# kleine Änderung für SBOM-Demo
+# SBOM Demo – zweite Version
+
 
 import requests
 import pandas as pd
