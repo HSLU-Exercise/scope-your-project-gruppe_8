@@ -1,35 +1,32 @@
-name: Generate SBOM         # Der Name des Workflows, der in GitHub Actions angezeigt wird
+name: Generate SBOM                     # Name des Workflows in GitHub Actions
 
-on:                         # Hier wird definiert, wann der Workflow ausgeführt wird
-  pull_request:             # Immer wenn ein Pull Request erstellt oder aktualisiert wird
-    types: [opened, synchronize, reopened]    # Bei diesen drei Aktionen: erstellt, aktualisiert oder wieder geöffnet
+on:                                     # Auslöser des Workflows
+  pull_request:                         # läuft für Pull Requests
+    types: [opened, synchronize, reopened]  # bei PR-Erstellung, weiteren Commits und Wiederöffnen
 
-jobs:                        # Ein Workflow kann aus mehreren Jobs bestehen
-  generate-sbom:             # Name des Jobs (hier: "generate-sbom")
-    runs-on: ubuntu-latest   # GitHub führt den Job auf einer virtuellen Ubuntu-Umgebung aus
+jobs:                                   # Definition der Jobs
+  build:                                # Job-Name
+    runs-on: ubuntu-latest              # Runner-Umgebung (Ubuntu)
 
-    steps:                   # Jeder Job besteht aus mehreren Schritten
-      - name: Checkout code  # Schritt 1: Der Repository-Code wird heruntergeladen
-        uses: actions/checkout@v4  # Offizielle GitHub Action, um den aktuellen Code aus dem Repo zu holen
-       
-      - name: Install Syft    # Schritt 2: Das Tool „Syft“ wird installiert
-        uses: anchore/sbom-action/download-syft@v0.17.0
-         # Syft ist ein Tool von Anchore, das Software Bills of Materials (SBOMs) generiert
+    steps:                              # Auszuführende Schritte
+      - name: Checkout code             # Repository auf den Runner ziehen
+        uses: actions/checkout@v4
 
-      - name: Generate SBOM (CycloneDX JSON)    # Schritt 3: SBOM-Datei erstellen
-        run: |                                  # Mit dem Pipe-Symbol können mehrere Bash-Befehle ausgeführt werden
-          echo "🔍 Generiere SBOM..."           # Gibt eine Nachricht im Log aus (zur Übersicht)
-          syft dir:. -o cyclonedx-json > sbom.json
-          # → Führt Syft aus:
-          #    - 'dir:.' bedeutet: Scanne das aktuelle Verzeichnis
-          #    - '-o cyclonedx-json' legt das Ausgabeformat auf CycloneDX JSON fest
-          #    - '> sbom.json' speichert das Ergebnis in einer Datei namens sbom.json
-          echo "✅ SBOM erstellt: sbom.json"    # Gibt eine Erfolgsmeldung im Log aus
-
-      - name: Upload SBOM as artifact           # Schritt 4: SBOM-Datei in GitHub hochladen
-        uses: actions/upload-artifact@v4        # Offizielle GitHub Action zum Hochladen von Dateien
+      - name: Set up Python             # Python-Toolchain bereitstellen
+        uses: actions/setup-python@v5
         with:
-          name: sbom-${{ github.event.pull_request.head.ref }}
-          # Der Name des hochgeladenen Artefakts enthält den Namen des PR-Branches
-          path: sbom.json
-          # Der Pfad zur Datei, die hochgeladen werden soll (unsere generierte SBOM)
+          python-version: '3.10'        # Python-Version für das Projekt
+
+      - name: Install dependencies      # Projektabhängigkeiten installieren
+        run: pip install -r requirements.txt  # liest requirements.txt (z.B. requests/pandas/numpy)
+
+      - name: Generate SBOM             # SBOM mit Syft erzeugen
+        uses: anchore/sbom-action/download-syft@v0.17.0
+        with:
+          format: cyclonedx-json        # Ausgabeformat: CycloneDX JSON (Datei: sbom.json)
+
+      - name: Upload SBOM               # SBOM als Artefakt anhängen
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom                    # Artefaktname in der Actions-Ansicht
+          path: sbom.json               # Pfad zur erzeugten SBOM-Datei
