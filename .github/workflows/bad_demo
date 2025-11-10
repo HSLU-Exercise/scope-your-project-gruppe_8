@@ -1,0 +1,18 @@
+# bad_demo.py
+# Ein kleiner Online-Shop (nur Demo!)
+
+shop_name = "Paul's Super Shop"
+produkt = "Premium T-Shirt"
+preis = 19.99
+waehrung = "EUR"
+
+print(f"Willkommen bei {shop_name}!")
+print(f"Du hast das {produkt} für {preis} {waehrung} ausgewählt.")
+
+# ABSICHTLICH: Harte Kodierung eines FAKE-Keys (sicheres Demo-Format)
+# Achtung: niemals echte Live-Keys in ein öffentliches Repo pushen!
+key = "rk_test_1234567890abcdefghijklmnop"
+
+print(f"Key geladen: {key[:12]}... (ganzer Key sichtbar!)")
+print("Zahlung wird verarbeitet... ✅")
+print("Vielen Dank für deinen Einkauf! 🎉")
