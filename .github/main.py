@@ -1,4 +1,4 @@
-# SBOM Demo – zweite Version
+# SBOM Demo – dritte Version
 
 
 import requests
