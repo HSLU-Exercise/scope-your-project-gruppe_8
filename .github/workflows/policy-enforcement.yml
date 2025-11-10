@@ -26,6 +26,7 @@ jobs:
     steps:
       # Schritt 1: Policy-Prüfung – blockiert PRs, die in main mergen wollen
       - name: Check if PR targets main
+        if: github.actor != 'dependabot[bot]'
         run: |
           echo "🔍 Prüfe Ziel-Branch..."
           # GitHub-Kontext liefert den Ziel-Branch des Pull Requests
