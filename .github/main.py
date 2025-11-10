@@ -1,4 +1,4 @@
-# SBOM Demo – einfacher Beispielcode
+# SBOM Demo
 # Dieses Skript dient nur zur Demonstration des automatischen SBOM-Workflows.
 
 def main():
