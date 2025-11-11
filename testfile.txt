@@ -1,0 +1,14 @@
+# Fake-Secrets zum Testen des Secret-Scanners
+
+# AWS Access Key – nur Demo
+aws_access_key_id = AKIAFAKEKEYEXAMPLE1234
+aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYFAKESECRET
+
+# Stripe API Key – Demo
+STRIPE_KEY=sk_test_FAKESTRIPEKEYEXAMPLE1234567890
+
+# JWT Token – Demo
+JWT_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.FAKEPAYLOAD.FAKESIGNATURE
+
+# Random Base64 – hohe Entropie, sollte heuristisch erkannt werden
+TOKEN=MzJkZjQ1ZTQ1MzNkZGVmNDU2N2FiY2RlZjEyMzQ1Njc4OTAxMjM0NTY3ODkw
