@@ -1,15 +1,19 @@
-# So sollten wir immer mit Secrets umgehen!
+# Ein kleiner Online-Shop (nur Demo!)
+shop_name = "Paul's Super Shop"
+produkt = "Premium T-Shirt"
+preis = 19.99
+waehrung = "EUR"
 
-# 1. Wir importieren die benötigten Werkzeuge
-import os  # Für den Zugriff auf System-Funktionen
-from dotenv import load_dotenv  # Speziell für .env Dateien
+print(f"Willkommen bei {shop_name}!")
+print(f"Du hast das {produkt} für {preis} {waehrung} ausgewählt.")
 
-# 2. Wir laden die .env Datei
-load_dotenv()  # Diese Funktion sucht nach einer .env Datei und lädt ihre Inhalte
+# ✅ SICHER: Key aus Environment Variable
+import os
+stripe_key = os.getenv('STRIPE_KEY')
 
-# 3. Wir holen den Stripe-Key aus der .env Datei
-stripe_key = os.getenv('STRIPE_KEY')  # Sucht nach "STRIPE_KEY" in der .env Datei
-
-# 4. Wir zeigen nur einen Teil des Keys an - für Sicherheit!
-print(f"Zahlung mit Key: {stripe_key[:10]}...")  
-# Die [:10] zeigt nur die ersten 10 Zeichen an, nicht den ganzen Key!
+if stripe_key:
+    print(f"Key geladen: {stripe_key[:10]}...")  # ✅ Nur Teilanzeige!
+    print("Zahlung wird verarbeitet... ✅")
+    print("Vielen Dank für deinen Einkauf! 🎉")
+else:
+    print("❌ Stripe Key nicht gefunden!")
