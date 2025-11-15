@@ -28,11 +28,11 @@ jobs:
       - name: Check if PR targets main
         if: github.actor != 'dependabot[bot]'
         run: |
-          echo "🔍 Prüfe Ziel-Branch..."
+          echo "Prüfe Ziel-Branch..."
           # GitHub-Kontext liefert den Ziel-Branch des Pull Requests
           if [ "${{ github.event.pull_request.base.ref }}" == "main" ]; then
-            echo "❌ Merge in main ist nicht erlaubt!"
+            echo "Merge in main ist nicht erlaubt!"
             exit 1  # Workflow schlägt fehl → roter Status → Merge blockiert
           else
-            echo "✅ Merge-Ziel ist erlaubt."
+            echo "Merge-Ziel ist erlaubt."
           fi
