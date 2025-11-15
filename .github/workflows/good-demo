@@ -13,7 +13,7 @@ print(f"Du hast das {produkt} für {preis} {waehrung} ausgewählt.")
 # SICHER: Key aus Environment Variable laden
 import os
 stripe_key = os.getenv('STRIPE_KEY')
-
+ 
 if stripe_key:
     print(f"Key geladen: {stripe_key[:10]}... (Key sicher versteckt!)")
     print("Zahlung wird verarbeitet...")
