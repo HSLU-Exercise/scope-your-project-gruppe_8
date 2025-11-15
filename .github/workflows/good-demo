@@ -19,5 +19,5 @@ if stripe_key:
     print("Zahlung wird verarbeitet...")
     print("Vielen Dank für deinen Einkauf!")
 else:
-    print("❌ Stripe Key nicht gefunden!")
+    print("Stripe Key nicht gefunden!")
     print("Bitte STRIPE_KEY als Environment Variable setzen.")
