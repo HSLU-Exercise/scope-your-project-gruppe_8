@@ -10,14 +10,14 @@ waehrung = "EUR"
 print(f"Willkommen bei {shop_name}!")
 print(f"Du hast das {produkt} für {preis} {waehrung} ausgewählt.")
 
-# ✅ SICHER: Key aus Environment Variable laden
+# SICHER: Key aus Environment Variable laden
 import os
 stripe_key = os.getenv('STRIPE_KEY')
 
 if stripe_key:
     print(f"Key geladen: {stripe_key[:10]}... (Key sicher versteckt!)")
-    print("Zahlung wird verarbeitet... ✅")
-    print("Vielen Dank für deinen Einkauf! 🎉")
+    print("Zahlung wird verarbeitet...")
+    print("Vielen Dank für deinen Einkauf!")
 else:
     print("❌ Stripe Key nicht gefunden!")
     print("Bitte STRIPE_KEY als Environment Variable setzen.")
