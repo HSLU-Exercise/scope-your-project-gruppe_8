@@ -5,4 +5,4 @@ updates:
   - package-ecosystem: "pip" # für Python und seine Packages für andere Codes siehe andere Optionen
     directory: "/Dependabot" # Wenn die datei direkt auf dem home/root-Folder ist reicht "/". Ansonsten Root eingeben
     schedule:
-      interval: "weekly" #yearly, weeky sind auch möglich. #Hier ist Daily eingestellt.
+      interval: "daily" #yearly, weeky sind auch möglich. #Hier ist Daily eingestellt.
