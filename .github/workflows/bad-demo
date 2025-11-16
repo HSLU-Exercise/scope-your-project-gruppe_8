@@ -8,7 +8,7 @@ print(f"Willkommen bei {shop_name}!")
 print(f"Du hast das {produkt} für {preis} {waehrung} ausgewählt.")
 
 # Key direkt im Code – NICHT SICHER!
-stripe_key = "sk_live_ 0000000000000000000000000000000000000000000000+"
+stripe_key = "sk_live_0000000000000000000000000000000000000000000000+"
 
 print(f"Key geladen: {stripe_key}")  # GANZER KEY SICHTBAR!
 print("Zahlung wird verarbeitet... ")
