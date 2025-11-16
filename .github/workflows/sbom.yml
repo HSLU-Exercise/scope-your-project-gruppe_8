@@ -1,0 +1,25 @@
+name: Generate SBOM                         # Name des Workflows
+
+on:
+  pull_request:                             # Wird bei jedem Pull Request ausgeführt
+    types: [opened, synchronize, reopened]  # Bei neuem, geändertem oder erneut geöffnetem PR
+
+jobs:
+  build:
+    runs-on: ubuntu-latest                  # Läuft auf GitHubs Ubuntu Runner
+
+    steps:
+      - name: Checkout code                 # 1. Holt den Code aus dem Repository
+        uses: actions/checkout@v4           #     GitHub Action: Code auschecken
+
+      - name: Install Syft                  # 2. Lädt das Tool Syft herunter
+        uses: anchore/sbom-action/download-syft@v0.17.0  #     Tool von Anchore für SBOM-Erstellung
+
+      - name: Generate SBOM                 # 3. Erzeugt die SBOM im CycloneDX-Format
+        run: syft dir:. -o cyclonedx-json > sbom.json    #     Scannt das Projekt und speichert sbom.json
+
+      - name: Upload SBOM                   # 4. Lädt die SBOM-Datei als Artefakt hoch
+        uses: actions/upload-artifact@v4    #     Offizielle GitHub Action zum Hochladen
+        with:
+          name: sbom                        #     Name des Artefakts (so wird es in GitHub angezeigt)
+          path: sbom.json                   #     Speicherort der Datei
