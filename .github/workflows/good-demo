@@ -5,7 +5,7 @@ shop_name = "Paul's Super Shop"
 produkt = "Premium T-Shirt"
 preis = 19.99
 waehrung = "EUR"
-
+ 
 # Begrüssung
 print(f"Willkommen bei {shop_name}!")
 print(f"Du hast das {produkt} für {preis} {waehrung} ausgewählt.")
