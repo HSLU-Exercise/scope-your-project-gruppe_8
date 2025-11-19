@@ -1,18 +1,15 @@
 # Ein kleiner Online-Shop (nur Demo!)
-
-# Shop-Infos
 shop_name = "Paul's Super Shop"
 produkt = "Premium T-Shirt"
 preis = 19.99
 waehrung = "EUR"
 
-# Begrüßung
 print(f"Willkommen bei {shop_name}!")
 print(f"Du hast das {produkt} für {preis} {waehrung} ausgewählt.")
 
 # Key direkt im Code – NICHT SICHER!
-key = "sk_live_51J1qG72eZvKYlo2C9jZ1qG72eZvKYlo2C9jZ1qG72eZvKYlo2C9jZ1qG72eZvKYlo2C9jZ1qG7"
+stripe_key = "sk_live _51Hf9f2ABCDEfGHIjklMNOpqrSTUVwxyZ1234567890abcdef"
 
-print(f"Key geladen: {key[:10]}... (ganzer Key sichtbar!)")
-print("Zahlung wird verarbeitet... ✅")
-print("Vielen Dank für deinen Einkauf! 🎉")
+print(f"Key geladen: {stripe_key}")  # GANZER KEY SICHTBAR!
+print("Zahlung wird verarbeitet... ")
+print("Vielen Dank für deinen Einkauf! ")
