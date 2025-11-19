@@ -1,6 +1,6 @@
-numpy==1.16.0
-requests==2.20.0
-PyYAML==5.1
+numpy==2.3.4
+requests==2.23.0
+PyYAML==6.3
 #libary=="Version) Oben genante konfigurations sind auf den Testcode zugeschnitten, können geändert werden.
 Live Demo
 
