@@ -1,3 +1,5 @@
 numpy==1.16.0
 requests==2.20.0
 PyYAML==5.1
+#Packete wie oben Beschrieben angeben. Kann geänadert werden.
+#Wichtig Name des Unterordner merken und angeben in der YML-Datei.
