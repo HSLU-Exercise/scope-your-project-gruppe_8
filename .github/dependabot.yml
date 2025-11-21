@@ -1,10 +1,7 @@
-# To get started with Dependabot version updates, you'll need to specify which
+#Diese Datei sollte zwingend im Unterordner .github gespeichert sein. Ansonsten fehler
 version: 2
 updates:
-  - package-ecosystem: "pip"
-    directory: "/Dependabot"
+  - package-ecosystem: "pip" #Gibt den Packegae Manager an für Java müsste beispielsweise Mave verwendet werden
+    directory: "/Dependabot" #Gibt den Speicherort der Requriements.txt datei an. Je nach Unterodner ein anderer Name.
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
-    # KEINE groups, KEINE komplexen Einstellungen
-    target-branch: "main"
+      interval: "daily" #Gibt das Intervall an wie häufig Dependabot Pullrequests machen sollte (weekly, monthly, wären auch Optionen
